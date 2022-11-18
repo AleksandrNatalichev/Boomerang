@@ -5,22 +5,41 @@
 class Boomerang {
   constructor() {
     this.skin = '🌀';
-    this.position = 0;
+    this.position = 1;
+    this.isDeadly = false;
   }
 
-  fly() {
+  fly(launchPosition) {
+    this.isDeadly = true;
     this.moveRight();
-    this.moveLeft();
   }
 
   moveLeft() {
     // Идём влево.
-    this.position -= 1;
+    let timer = 0;
+    const id = setInterval(() => {
+      if (timer < 6) {
+        this.position -= 1;
+        timer += 1;
+      } else {
+        clearInterval(id);
+      }
+    }, 100);
   }
 
   moveRight() {
     // Идём вправо.
-    this.position += 1;
+    let timer = 0;
+    const id = setInterval(() => {
+      if (timer < 6) {
+        this.position += 1;
+        timer += 1;
+      } else {
+        clearInterval(id);
+        this.isDeadly = false;
+        this.moveLeft();
+      }
+    }, 100);
   }
 }
 

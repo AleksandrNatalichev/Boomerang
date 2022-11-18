@@ -1,9 +1,10 @@
 // Враг.
 
 class Enemy {
-  constructor() {
+  constructor(trackLength) {
     this.generateSkin();
-    this.position = 2;
+    this.position = trackLength;
+    this.isDead = false;
   }
 
   generateSkin() {
@@ -17,8 +18,9 @@ class Enemy {
   }
 
   die() {
-    this.position = '?';
-    console.log('Enemy is dead!');
+    this.position = undefined;
+    this.skin = '☠️';
+    this.isDead = true;
   }
 }
 
